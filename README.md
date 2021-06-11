@@ -8,27 +8,29 @@ npm install --save performant-array-to-tree
 
 ## Usage example
 1. wrap up the code below as a .ts file, e.g. sort.ts: 
-
+```js
     import {sortCategoriesForInsert} from "./solution";
-
 
     inputJson = // prepare the input json
     var insertionList = sortCategoriesForInsert(inputJson);
 
     To view the result list: 
 
-    // print to console 
+    // print to console.
     console.log(insertionList); 
 
-    // write to json
+    // write to json.
     var fs = require('fs');
-    fs.writeFile ("insertion_list.json", JSON.stringify(result, null, '\t') , function(err: any) {
-    if (err) throw err;
-    console.log('complete');
-    }
+    fs.writeFile ("insertion_list.json", 
+                  JSON.stringify(result, null, '\t'), 
+                  function(err: any) {
+      if (err) throw err;
+      console.log('complete');
+      }
     );
+```
 
-2. execute sort.ts via command line (or in your IDE)
+2. execute sort.ts via command line (or in your IDE):
     ts-node sort.ts
 
 ## Notes on performance
@@ -48,6 +50,7 @@ The second condition implies that the constructed hierarchy tree could be very d
 
 However, when the width of the tree is greater than its depth, choosing depth-first-search traversal could outperform breadth-first-search. In this case, one can replace the bfsTraverse function with the following code:
 
+```js
 function dfsTraverse(tree: any, result: any) {
     for (var index in tree) {
 
@@ -65,3 +68,4 @@ function dfsTraverse(tree: any, result: any) {
       }
     }
   }
+```
